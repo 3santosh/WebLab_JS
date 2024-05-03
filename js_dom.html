@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DOM</title>
+</head>
+
+<body>
+  <div id="container">
+    <p id="good">Good morning</p>
+    <p id="cont">I am a container</p>
+    <form>
+      <input type="text" id="address-input" name="address" placeholder="Your Address">
+      <button type="button" id="btnLoad">Load</button>
+    </form>
+    <p>I live in <span id="spanid">...</span></p>
+    <button id="show-hide">Show/Hide</button>
+    <button id="change-font">Change Service Font</button>
+    <a id="clickme" href="#">Add New Service</a>
+    <div id="service-section">
+      <h2 class="services">Services</h2>
+      <ul id="service-list">
+        Some of our services are:
+        <li>Hosting</li>
+        <li>Domain</li>
+        <li>Network Security</li>
+        <li>Cloud Services</li>
+        <li>Data Services</li>
+        <li>Application Development</li>
+        <li>Web Development</li>
+      </ul>
+    </div>
+    <footer>
+      <div id="footer-company"> Copyright &copy; 2023 All Rights Reserved</div>
+    </footer>
+  </div>
+  <script>
+    let goodElement = document.getElementById('good');
+    goodElement.addEventListener('mouseenter', function () {
+      goodElement.style.backgroundColor = 'blue';
+    });
+    goodElement.addEventListener('mouseleave', function () {
+      goodElement.style.backgroundColor = null;
+    });
+    var conta = document.getElementById('cont');
+    conta.style.background = 'yellow';
+
+
+    let addressInput = document.getElementById('address-input');
+    let spanid = document.getElementById('spanid');
+
+    document.getElementById('btnLoad').addEventListener('click', function () {
+      spanid.innerText = addressInput.value;
+    });
+
+    addressInput.addEventListener('input', function () {
+      spanid.innerText = addressInput.value;
+    });
+
+    var showHideButton = document.getElementById('show-hide');
+    var serviceSection = document.getElementById('service-section');
+
+    showHideButton.addEventListener('click', function () {
+      if (serviceSection.style.display === 'none' || serviceSection.style.display === '') {
+        serviceSection.style.display = 'block';
+      } else {
+        serviceSection.style.display = 'none';
+      }
+    });
+
+    var serviceList = document.getElementById('service-list');
+    var changeFontButton = document.getElementById('change-font');
+    var isFontGreen = false;
+
+    changeFontButton.addEventListener('click', function () {
+      var serviceItems = serviceList.getElementsByTagName('li');
+      for (var i = 0; i < serviceItems.length; i++) {
+        if (isFontGreen) {
+          serviceItems[i].style.color = 'black';
+          serviceItems[i].textContent = serviceItems[i].textContent.toLowerCase();
+        } else {
+          serviceItems[i].style.color = 'green';
+          serviceItems[i].textContent = serviceItems[i].textContent.toUpperCase();
+        }
+      }
+      isFontGreen = !isFontGreen;
+    });
+
+    document.getElementById('clickme').addEventListener('click', function () {
+      var newItem = document.createElement('li');
+      newItem.textContent = 'Logo Design';
+      serviceList.appendChild(newItem);
+    });
+  </script>
+</body>
+
+</html>
